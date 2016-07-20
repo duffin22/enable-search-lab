@@ -55,3 +55,7 @@ The screenshots below show what the app should look like.
 
 - [SearchView](http://developer.android.com/reference/android/widget/SearchView.html)
 - [Creating a Search Interface](http://developer.android.com/guide/topics/search/search-dialog.html)
+
+## Licensing
+All content is licensed under a CC­BY­NC­SA 4.0 license.
+All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
