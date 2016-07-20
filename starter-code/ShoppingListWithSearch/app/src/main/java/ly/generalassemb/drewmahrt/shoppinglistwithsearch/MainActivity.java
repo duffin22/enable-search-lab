@@ -80,15 +80,21 @@ public class MainActivity extends AppCompatActivity {
             int n=0;
             ArrayList<String> matches = new ArrayList<>();
             while (!cursor.isAfterLast()) {
-                matches.add(cursor.getString());
+                matches.add(cursor.getString(cursor.getColumnIndexOrThrow(ShoppingSQLiteOpenHelper.COL_ITEM_NAME)));
                 cursor.moveToNext();
                 n++;
             }
 
             cursor.close();
 
+            String s = "";
+
+            for (String t : matches) {
+                s+=t+"\n";
+            }
+
             String msg = "There were "+n+" items with occurences of '"+query+"' in the list";
-            Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
 
         }
     }
