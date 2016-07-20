@@ -30,6 +30,8 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
     public static final String COL_ITEM_DESCRIPTION = "DESCRIPTION";
     public static final String COL_ITEM_TYPE = "TYPE";
 
+    private static ShoppingSQLiteOpenHelper instance;
+
 
     public static final String[] SHOPPING_COLUMNS = {COL_ID,COL_ITEM_NAME,COL_ITEM_DESCRIPTION,COL_ITEM_PRICE,COL_ITEM_TYPE};
 
@@ -72,6 +74,13 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
         return returnId;
     }
 
+    public static ShoppingSQLiteOpenHelper getInstance(Context context){
+        if(instance == null){
+            instance = new ShoppingSQLiteOpenHelper(context);
+        }
+        return instance;
+    }
+
     public Cursor getShoppingList(){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -95,5 +104,16 @@ public class ShoppingSQLiteOpenHelper extends SQLiteOpenHelper{
                 new String[]{String.valueOf(id)});
         db.close();
         return deleteNum;
+    }
+
+//    public String getItem(){}
+
+    public Cursor searchItems(String query){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+SHOPPING_LIST_TABLE_NAME+" WHERE "+COL_ITEM_NAME+" LIKE '%"+query+"%';" ,null);
+
+        return cursor;
     }
 }
